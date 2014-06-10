@@ -255,4 +255,14 @@ class Revship_Model
     {
         return Revship::db()->escape(trim($string));
     }
+    public function genEmptyRecordArray()
+    {
+        $record = array();
+        foreach($this->dbAllowFields as $key)
+        {
+            $record[$key] = '';
+        } 
+        return $record;
+    }
+
 }

@@ -66,4 +66,20 @@ class Revship_Gateway_Facebook
 	{
 		return $this->obj->getLogoutUrl();
 	}
+    /**
+     * 获取应用程序安装页面
+     */
+    public function getInstallUrl()
+    {
+        $domainProtocol = Revship::lib('config')->getItem('site.domainProtocol');
+        $domainUrl = Revship::lib('config')->getItem('site.domainUrl');
+        $app_id = Revship::lib('config')->getItem('site.facebookAppId');
+        $canvas_page = Revship::lib('config')->getItem('site.facebookCanvasPage');
+        $urlPrefix = $domainProtocol . '://' . $domainUrl . '/' ;
+        $redirect_uri = $urlPrefix .'facebook/addToPage';
+        $auth_url = "https://graph.facebook.com/oauth/authorize?client_id="
+            . $app_id ."&redirect_uri=" . urlencode($redirect_uri);
+
+        return $auth_url;   
+    }
 }
